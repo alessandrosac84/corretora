@@ -1,0 +1,102 @@
+<h1>{{titulo}}</h1>
+<h2>Cliente selecionado: {{cliente.nome}}</h2>
+    <ul>
+        <li *ngFor="#cli of clientes">
+            {{cli.id}}: {{cli.nome}}
+        </li>
+    </ul>
+    <p *ngIf="clientes.length < 1">Nenhum cliente encontrado.</p>
+
+    <!-- Formatada para Uppercase -->
+    <p>Caixa alta: {{texto | uppercase}}</p>
+    <!-- Formatada para Lowercase -->
+  	<p>Caixa baixa: {{texto | lowercase}}</p>
+    <!-- Formatada para Moeda -->
+    <p>Valor: {{valor | currency:'BRL':true}}
+
+    <p>Data atual: {{dataAtual | date:'dd/MM/yyyy'}}</p>
+
+    <p>
+  		Data atual 2: {{dataAtual | date:formatar}}
+  		<button (click)="mudarFormato()">Mudar formato</button>
+  	</p>
+
+    <div class="w3-container">  
+    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span class="w3-tag w3-teal w3-round">Current</span></h6>  
+    </div>
+    
+    <p>1000 + obterJuros() = {{ 1000 + obterJuros() }}</p>
+    <p>olaFulano (uppercase) = {{ olaFulano | uppercase }}</p>
+
+    <button class="btn btn-default" (click)="dizerOi()">
+        Diga oi
+    </button>
+
+    <input (keyup)="mostrarTexto($event)">
+
+    <button class="btn btn-default" 
+        (click)="olaFulano='Oi, Fulano!!!';dizerOi()">
+        Oi Fulano
+    </button>
+
+    <button class="btn btn-default" (click)="mudarMostrarMensagem()" 
+        [disabled]="!mostrarMensagem">
+        {{ mostrarMensagem ? 'Ativo' : 'Inativo' }}
+    </button>
+        
+    <button class="btn btn-info" (click)="mudarMostrarMensagem()" 
+        [disabled]="mostrarMensagem">
+        {{ !mostrarMensagem ? 'Ativo' : 'Inativo' }}
+    </button>
+
+    <hr />
+    <input type="text" [value]="nome">
+    <span>{{ nome }}</span>
+
+    <hr />
+    <input type="text" (keyup)="atualizarNome($event)">
+    <span>{{ nome }}</span>
+
+    <hr />
+    <input type="text" [(ngModel)]="nome2">
+    <span>{{ nome2 }}</span> 
+
+    <hr />
+    <span [style.color]="azul ? 'blue' : 'red'">{{ olaFulano }}</span>
+    <button class="btn" [class.btn-primary]="azul" 
+        (click)="mudarEstilo()">
+        Clique para mudar estilo
+    </button>
+    
+    
+    <hr />
+    <button class="btn" 
+        [ngClass]="{'btn-success': cadastrar, 'btn-danger': remover}" 
+        (click)="alterarCadastro()">
+        {{ cadastrar ? 'Cadastrar' : 'Remover' }}
+    </button>
+
+
+    <h2 *ngIf="exibir">{{ olaFulano }}</h2>
+    <button class="btn btn-warning" 
+        (click)="alternarValor()">
+        Exibir/esconder texto
+    </button>
+    <hr />
+    
+    <h4 *ngIf="contador < 5">
+        Exibindo enquanto contador for menor que 5, 
+        valor atual do contador: {{ contador }}
+    </h4>
+    <h4 *ngIf="contador >= 5">
+        Exibindo porque contador e maior ou igual a 5, 
+        valor atual do contador: {{ contador }}
+    </h4>
+    <button class="btn btn-primary" 
+        (click)="incrementar()">
+        Incrementar
+    </button>
+
+    <formAluno></formAluno>
+
+    <aluno></aluno>
